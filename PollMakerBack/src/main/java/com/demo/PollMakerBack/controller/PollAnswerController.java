@@ -55,6 +55,15 @@ public class PollAnswerController {
     }
 
     @CrossOrigin
+    @PostMapping("/poll-maker/answers/save-answer-authenticated")
+    public ResponseEntity<PollAnswer> saveWithAuth( @RequestBody PollAnswer pollAnswer ) {
+
+        ResponseEntity<PollAnswer> r = service.save(pollAnswer);
+
+        return r;
+    }
+
+    @CrossOrigin
     @GetMapping("/pollmaker/answers/answersfrompoll")
     public ResponseEntity<List<BarChart>> getChartData(@RequestParam(name="idpoll") Long idpoll ) {
 

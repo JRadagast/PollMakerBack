@@ -36,10 +36,11 @@ public class PollAnswerRepository {
 
     private static String QUERY_FIND_BY_ID = "SELECT * FROM pollanswers WHERE idpollanswer = :IDPOLLANSWER";
 
-    private static String QUERY_FIND_POLL_ANSWERS_COUNT = "SELECT po.\"option\" AS OPTION, \n" +
-            "(SELECT COUNT(pa.idpollanswer) FROM pollanswers pa WHERE pa.idpolloption = po.idpolloptions  ) AS VALUE\n" +
+    private static String QUERY_FIND_POLL_ANSWERS_COUNT = "SELECT po.\"option\" AS OPTION, COUNT(pa.idpollanswer) AS VALUE\n" +
             "FROM polloptions po \n" +
-            "WHERE po.idpoll = :POLLID";
+            "LEFT JOIN pollanswers pa ON pa.idpolloption = po.idpolloptions\n" +
+            "WHERE po.idpoll = :POLLID\n" +
+            "GROUP BY po.idpolloptions";
 
     public List<PollAnswer> getAllByUserId(Long iduser ) throws SQLException {
         setDataSource();

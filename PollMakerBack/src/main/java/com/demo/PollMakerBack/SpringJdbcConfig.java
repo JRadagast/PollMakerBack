@@ -25,7 +25,7 @@ public class SpringJdbcConfig {
         dataSource.setUsername("postgres");
         dataSource.setPassword("admin");
 
-        dataSource.setSchema("public");
+        dataSource.setSchema("pollmaker");
 
         return dataSource;
     }

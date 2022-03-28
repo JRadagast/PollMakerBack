@@ -62,7 +62,7 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
         http.cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/poll-maker/attach-to-user").authenticated()
+                .antMatchers("/poll-maker/answers/save-answer-authenticated").authenticated()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
